@@ -69,7 +69,7 @@ const playerLeftImage = new Image
 playerLeftImage.src =   './img/playerLeft.png'
 
 const playerRightImage = new Image
-playerRightImage.src =   './img/playerRight.png'
+playerRightImage.src =   './img/test.png'
 
 
 
@@ -80,7 +80,8 @@ const player = new Sprite({
     },
     image: playerDownImage,
     frames: {
-        max: 4
+        max: 4,
+        hold: 10
     },
     sprites: {
         up: playerUpImage,
@@ -152,7 +153,7 @@ function animate () {
     foreground.draw()
 
     let moving = true
-    player.moving = false
+    player.animate = false
 
     if (battle.initiated) return
     //activate a battle
@@ -213,7 +214,7 @@ function animate () {
 
 
     if(keys.w.pressed && lastKey === 'w' ){
-        player.moving = true
+        player.animate = true
         player.image = player.sprites.up
         for (let i=0; i < boundaries.length; i++ ){
            const boundary = boundaries[i]
@@ -237,7 +238,7 @@ function animate () {
         movables.forEach(moveable => moveable.position.y += 3)
     }
     else if (keys.a.pressed && lastKey === 'a' ) {
-        player.moving = true
+        player.animate = true
         player.image = player.sprites.left
         for (let i=0; i < boundaries.length; i++ ){
             const boundary = boundaries[i]
@@ -261,8 +262,8 @@ function animate () {
         movables.forEach(moveable => moveable.position.x += 3)
     }
     else if (keys.s.pressed && lastKey === 's' ){
-         player.moving = true
-         player.image = player.sprites.down
+        player.animate = true
+        player.image = player.sprites.down
         for (let i=0; i < boundaries.length; i++ ){
             const boundary = boundaries[i]
              if (
@@ -285,7 +286,7 @@ function animate () {
         movables.forEach(moveable => moveable.position.y -= 3)
     }
     else if (keys.d.pressed && lastKey === 'd' ) {
-        player.moving = true
+        player.animate = true
         player.image = player.sprites.right
         for (let i=0; i < boundaries.length; i++ ){
             const boundary = boundaries[i]
@@ -321,9 +322,26 @@ const battleBackground = new Sprite({
     image: battleBackgroundImage
 })
 
+const kittyImage = new Image()
+kittyImage.src = './img/kittySpritesheet.png'
+
+const kitty = new Sprite({
+    position:{
+        x:780,
+        y:100,
+    },
+    image: kittyImage,
+    frames: {
+        max: 8,
+        hold: 30
+    },
+    animate: true
+})
+
 function animateBattle() {
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
+    kitty.draw()
 }
 animateBattle()
 let lastKey = ''
