@@ -325,6 +325,9 @@ const battleBackground = new Sprite({
 const kittyImage = new Image()
 kittyImage.src = './img/kittySpritesheet.png'
 
+const blobImage = new Image()
+blobImage.src = './img/blob.png'
+
 const kitty = new Sprite({
     position:{
         x:780,
@@ -333,15 +336,32 @@ const kitty = new Sprite({
     image: kittyImage,
     frames: {
         max: 8,
-        hold: 30
+        hold: 15
     },
     animate: true
 })
+
+
+const blob = new Sprite({
+    position:{
+        x:190,
+        y:250,
+    },
+    image: blobImage,
+    frames: {
+        max: 4,
+        hold: 15
+    },
+    animate: true
+})
+
+console.log(blob)
 
 function animateBattle() {
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
     kitty.draw()
+    blob.draw()
 }
 animateBattle()
 let lastKey = ''
