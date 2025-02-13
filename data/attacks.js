@@ -5,8 +5,8 @@ const attacks = {
     type: 'Normal',
     color: 'black'
   },
-  Fireball: {
-    name: 'Fireball',
+  Hug: {
+    name: 'Hug',
     damage: 25,
     type: 'Fire',
     color: 'red'

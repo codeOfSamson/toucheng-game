@@ -41,7 +41,9 @@ opacity: 0; pointer-events: none;"
         font-size: 16px;
     ">Kitty</h1> 
     <div  style="position: relative;">
-        <div style="
+        <div
+        id="enemyHealthBar"
+        style="
         height: 5px;
         background-color: #14b014;
         position: absolute;
@@ -71,7 +73,9 @@ opacity: 0; pointer-events: none;"
         font-size: 16px;
     ">Blob</h1> 
     <div  style="position: relative;">
-        <div style="
+        <div 
+        id="playerHealthBar"
+        style="
         height: 5px;
         background-color: #14b014;
         position: absolute;
@@ -108,7 +112,7 @@ opacity: 0; pointer-events: none;"
     <button>Hug</button>
     <button>Chat</button>
     <button>罵人</button>
-    <button>😝</button>
+    <button>Tackle</button>
 </div>
 <div style="
     display: flex;
@@ -129,5 +133,6 @@ opacity: 0; pointer-events: none;"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="data/battleZones.js"></script>
 <script src="data/collisions.js"></script>
+<script src="data/attacks.js"></script>
 <script src="classes.js"></script>
 <script src="index.js"></script>

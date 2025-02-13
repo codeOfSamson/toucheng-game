@@ -338,7 +338,9 @@ const kitty = new Sprite({
         max: 8,
         hold: 15
     },
-    animate: true
+    animate: true,
+    isEnemy : true
+
 })
 
 
@@ -352,18 +354,37 @@ const blob = new Sprite({
         max: 4,
         hold: 15
     },
-    animate: true
+    animate: true,
+
+
 })
 
-console.log(blob)
 
+const renderedSprites = []
 function animateBattle() {
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
     kitty.draw()
     blob.draw()
+
+    renderedSprites.forEach((sprite)=> {
+        sprite.draw()
+    })
 }
 animateBattle()
+
+document.querySelectorAll('button').forEach((button)=> {
+    button.addEventListener('click', (e)=>{
+        console.log(e.currentTarget.innerHTML)
+        const selectedAttack = attacks[e.currentTarget.innerHTML]
+        kitty.attack({
+            attack: selectedAttack,
+            recipient: blob,
+            renderedSprites
+        })
+    })
+})
+
 let lastKey = ''
 window.addEventListener('keydown', (e)=>{
     switch(e.key){
