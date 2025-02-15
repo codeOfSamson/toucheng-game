@@ -104,15 +104,29 @@ opacity: 0; pointer-events: none;"
     display: flex;
     "
     >
-<div style="
+
+    <div 
+        id="dialogueBox"
+        style="position: 
+        absolute; 
+        top: 0; 
+        right: 0; 
+        bottom: 0;
+        left: 0; 
+        background-color: #14b014; 
+        padding: 12px;
+        display: none;
+        cursor: pointer;
+        ">bloo</div>
+
+    <div 
+        id="attacksBox"
+        style="
         width: 66.66%;
         display: grid;
         grid-template-columns:repeat(2, 1fr) ;
 ">  
-    <button>Hug</button>
-    <button>Chat</button>
-    <button>罵人</button>
-    <button>Tackle</button>
+
 </div>
 <div style="
     display: flex;
@@ -134,5 +148,7 @@ opacity: 0; pointer-events: none;"
 <script src="data/battleZones.js"></script>
 <script src="data/collisions.js"></script>
 <script src="data/attacks.js"></script>
+<script src="data/monsters.js"></script>
 <script src="classes.js"></script>
 <script src="index.js"></script>
+<script src="battleScene.js"></script>
