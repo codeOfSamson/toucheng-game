@@ -26,7 +26,7 @@
 <div 
 id="overlappingDiv"
 style="background-color: black; position:absolute; top: 0; right: 0; bottom: 0; left: 0; 
-opacity: 0; pointer-events: none;"
+opacity: 0; pointer-events: none; z-index: 10;"
 ></div>
 <div style="
     background-color: white; 
@@ -135,8 +135,10 @@ opacity: 0; pointer-events: none;"
     width: 33.33%;
     border-left: 4px solid black;
     ">
-    <h1 style="font-size: 16px;
-">
+    <h1 
+    id="attackType"
+    style="font-size: 16px;
+    ">
         Attack Type
     </h1>
 </div>

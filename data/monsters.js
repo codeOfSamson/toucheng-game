@@ -1,3 +1,9 @@
+const kittyImage = new Image()
+kittyImage.src = './img/kittySpritesheet.png'
+
+const blobImage = new Image()
+blobImage.src = './img/blob.png'
+
 const monsters = {
   Emby: {
     position: {
@@ -31,5 +37,39 @@ const monsters = {
     isEnemy: true,
     name: 'Draggle',
     attacks: [attacks.Tackle, attacks.Fireball]
-  }
+  },
+  Kitty: {
+    position:{
+        x:780,
+        y:100,
+    },
+    image: kittyImage,
+    frames: {
+        max: 8,
+        hold: 15
+    },
+    animate: true,
+    isEnemy : true,
+    name: 'Kitty',
+    attacks: [attacks.Tackle, attacks.Fireball]
+
+
+} ,
+  Blob: {
+    position:{
+        x:190,
+        y:250,
+    },
+    image: blobImage,
+    frames: {
+        max: 4,
+        hold: 15
+    },
+    animate: true,
+    name: 'Blob',
+    attacks: [attacks.Tackle, attacks.Fireball]
+
+
+} ,
+
 }

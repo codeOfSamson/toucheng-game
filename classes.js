@@ -6,9 +6,8 @@ class Sprite {
         frames = {max: 1, hold: 10}, 
         sprites, 
         animate = false, 
-        isEnemy = false,
         rotation = 0,
-        name
+        
             }) {
         this.position = position
         this.image = image
@@ -21,10 +20,8 @@ class Sprite {
         this.animate = animate
         this.sprites = sprites
         this.opacity = 1
-        this.health = 100
-        this.isEnemy = isEnemy
         this.rotation = rotation
-        this.name = name
+       
     }
     draw(){
         c.save()
@@ -57,6 +54,49 @@ class Sprite {
     
     }
 
+   
+  
+}
+
+class Monster extends Sprite{
+    constructor({
+        position, 
+        velocity, 
+        image, 
+        frames = {max: 1, hold: 10}, 
+        sprites, 
+        animate = false, 
+        rotation = 0,
+        isEnemy = false,
+        name,
+        attacks
+    }){
+        super({
+            position, 
+            velocity, 
+            image, 
+            frames, 
+            sprites, 
+            animate, 
+            rotation 
+
+        })
+        this.health = 100
+        this.isEnemy = isEnemy
+        this.name = name
+        this.attacks = attacks
+    }
+
+    faint() {
+        document.querySelector('#dialogueBox').innerHTML = this.name + ' is gonna take a quick nap!'
+        gsap.to(this.position, {
+            y: this.position.y + 20
+        })
+        gsap.to(this, {
+            opacity: 0
+        })
+    }
+
     attack({attack, recipient, renderedSprites}) {
         document.querySelector('#dialogueBox').style.display = 'block'
         document.querySelector('#dialogueBox').innerHTML = this.name + ' used ' + attack.name
@@ -66,10 +106,10 @@ class Sprite {
         let rotation = 1
         if ( this.isEnemy) rotation = -2.2
 
-        this.health -= attack.damage
+        recipient.health -= attack.damage
  
         switch ( attack.name) {
-            case 'Hug':
+            case 'Fireball':
                 const fireballImage = new Image()
                 fireballImage.src = './img/fireball.png'
                 const fireball = new Sprite({
@@ -94,7 +134,7 @@ class Sprite {
                     y: recipient.position.y + 20,
                     onComplete: () => {
                         gsap.to(healthBar,{
-                            width: this.health - attack.damage + '%'
+                            width: recipient.health - attack.damage + '%'
                         })
                         gsap.to(recipient.position, {
                             x: recipient.position.x +10,
@@ -128,7 +168,7 @@ class Sprite {
                     onComplete: () => {
                         //enemy actually gets hit
                         gsap.to(healthBar,{
-                            width: this.health - attack.damage + '%'
+                            width: recipient.health - attack.damage + '%'
                         })
                         gsap.to(recipient.position, {
                             x: recipient.position.x +10,
@@ -153,10 +193,10 @@ class Sprite {
         
       
     }
-  
 }
 
-class Boundary{
+
+class Boundary {
     static width = 48
     static height = 48
     constructor({position}) {

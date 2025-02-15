@@ -8,56 +8,24 @@ const battleBackground = new Sprite({
     image: battleBackgroundImage
 })
 
-const kittyImage = new Image()
-kittyImage.src = './img/kittySpritesheet.png'
 
-const blobImage = new Image()
-blobImage.src = './img/blob.png'
-
-const kitty = new Sprite({
-    position:{
-        x:780,
-        y:100,
-    },
-    image: kittyImage,
-    frames: {
-        max: 8,
-        hold: 15
-    },
-    animate: true,
-    isEnemy : true,
-    name: 'Kitty'
-
-})
+const kitty = new Monster(monsters.Kitty)
 
 //remove object and add to monsters
 
-const blob = new Sprite({
-    position:{
-        x:190,
-        y:250,
-    },
-    image: blobImage,
-    frames: {
-        max: 4,
-        hold: 15
-    },
-    animate: true,
-    name: 'Blob'
-
-
+const blob = new Monster(monsters.Blob)
+blob.attacks.forEach((attack)=> {
+    const button = document.createElement('button')
+    button.innerHTML = attack.name
+    document.querySelector('#attacksBox').append(button)
 })
-//May need to add my characters to mosters.js
-//const emby = new Sprite(monsters.Emby)
 
 const renderedSprites = [blob, kitty]
 
-const button = document.createElement('button')
-button.innerHTML = 'Fireball'
-document.querySelector('#attacksBox').append(button)
+let battleAnimationId
 
 function animateBattle() {
-    window.requestAnimationFrame(animateBattle)
+    battleAnimationId = window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
 
     renderedSprites.forEach((sprite)=> {
@@ -77,13 +45,50 @@ document.querySelectorAll('button').forEach((button)=> {
             recipient: kitty,
             renderedSprites
         })
+        console.log('k', kitty.health)
+        console.log('B', blob.health)
+        if (kitty.health <= 0){
+            queue.push(()=> {
+               kitty.faint()
+            })
+            queue.push(()=> {
+                gsap.to('#overlappingDiv', {
+                    opacity: 1,
+                    onComplete: () => {
+                        cancelAnimationFrame(battleAnimationId)
+                        animate()
+                        gsap.to('#overlappingDiv', {
+                            opacity: 0 
+                        })
+                    }
+                })
+            })
+            return
+        }
+        const randomAttack = kitty.attacks[Math.floor(Math.random() * kitty.attacks.length)]
+
         queue.push(()=> {
             kitty.attack({
-                attack: attacks.Tackle,
+                attack: randomAttack,
                 recipient: blob,
                 renderedSprites
-            })
+             })
         })
+
+
+        if (blob.health <= 0){
+            queue.push(()=> {
+               blob.faint()
+            })
+            return
+        }
+
+       
+    })
+    button.addEventListener('mouseenter', (e) => {
+        const selectedAttack = attacks[e.currentTarget.innerHTML]
+        document.querySelector('#attackType').innerHTML = selectedAttack.type
+        document.querySelector('#attackType').style.color = selectedAttack.color
     })
 })
 
