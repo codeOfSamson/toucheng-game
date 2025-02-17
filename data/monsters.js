@@ -43,7 +43,9 @@ const monsters = {
         x:780,
         y:100,
     },
-    image: kittyImage,
+    image: {
+      src: './img/kittySpritesheet.png'
+    },
     frames: {
         max: 8,
         hold: 15
@@ -60,7 +62,9 @@ const monsters = {
         x:190,
         y:250,
     },
-    image: blobImage,
+    image: {
+      src: './img/blob.png'
+    },
     frames: {
         max: 4,
         hold: 15

@@ -28,7 +28,13 @@ id="overlappingDiv"
 style="background-color: black; position:absolute; top: 0; right: 0; bottom: 0; left: 0; 
 opacity: 0; pointer-events: none; z-index: 10;"
 ></div>
-<div style="
+
+
+ 
+    <canvas>
+    </canvas>
+    <div id="userInterface">
+        <div style="
     background-color: white; 
     width: 250px; 
     position: absolute;
@@ -59,7 +65,6 @@ opacity: 0; pointer-events: none; z-index: 10;"
    "></div>
     </div>
     </div>
-
     <div style="
     background-color: white; 
     width: 250px; 
@@ -91,8 +96,6 @@ opacity: 0; pointer-events: none; z-index: 10;"
    "></div>
     </div>
     </div>
-    <canvas>
-    </canvas>
     <div style="
     background-color: white; 
     height: 120px; 
@@ -142,11 +145,12 @@ opacity: 0; pointer-events: none; z-index: 10;"
         Attack Type
     </h1>
 </div>
-
+</div>
 
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="data/audio.js"></script>
 <script src="data/battleZones.js"></script>
 <script src="data/collisions.js"></script>
 <script src="data/attacks.js"></script>
