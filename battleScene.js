@@ -60,12 +60,14 @@ function initBattle() {
                                 opacity: 0 
                             })
                             battle.initiated = false 
+                            audio.Map.play()
 
                         }
-                    })
+                  })
                 })
                 return
             }
+            
             const randomAttack = kitty.attacks[Math.floor(Math.random() * kitty.attacks.length)]
     
             queue.push(()=> {
@@ -92,6 +94,7 @@ function initBattle() {
                                 opacity: 0 
                             })
                            battle.initiated = false 
+                           audio.Map.play()
                         }
                     })
                 })
@@ -116,8 +119,9 @@ function animateBattle() {
         sprite.draw()
     })
 }
-initBattle()
-animateBattle()
+animate()
+//  initBattle()
+// animateBattle()
 
 
 

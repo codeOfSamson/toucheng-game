@@ -182,10 +182,11 @@ function animate () {
                      && Math.random() < .05
 
              ){
-                console.log('activate battle')
                 window.cancelAnimationFrame(animationId)
 
                 battle.initiated = true
+                audio.Map.stop()
+                audio.battle.play()
                 gsap.to('#overlappingDiv',{
                     opacity: 1,
                     repeat: 3,
@@ -254,7 +255,6 @@ function animate () {
                      }
                  })
              ){
-                 console.log('when worlds collide')
                  moving = false
                  break
              }
@@ -278,7 +278,6 @@ function animate () {
                      }
                  })
              ){
-                 console.log('when worlds collide')
                  moving = false
                  break
              }
@@ -302,7 +301,6 @@ function animate () {
                      }
                  })
              ){
-                 console.log('when worlds collide')
                  moving = false
                  break
              }
@@ -319,7 +317,6 @@ let lastKey = ''
 window.addEventListener('keydown', (e)=>{
     switch(e.key){
         case 'w':
-            console.log(1)
             keys.w.pressed = true
             lastKey = 'w'
             break
@@ -357,4 +354,12 @@ window.addEventListener('keyup', (e)=>{
             keys.d.pressed = false
             break
     }
+})
+
+let clicked = false
+window.addEventListener('click', (e)=> {
+    if(!clicked) {
+        audio.Map.play()
+        clicked = true
+        }
 })
