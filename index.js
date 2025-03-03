@@ -60,16 +60,16 @@ foregroundImage.src = './img/foregroundObjects.png'
 
 
 const playerDownImage = new Image
-playerDownImage.src =   './img/playerDown.png'
+playerDownImage.src =   './img/scootDown.png'
 
 const playerUpImage = new Image
-playerUpImage.src =   './img/playerUp.png'
+playerUpImage.src =   './img/scootDown.png'
 
 const playerLeftImage = new Image
-playerLeftImage.src =   './img/playerLeft.png'
+playerLeftImage.src =   './img/2Scoot.png'
 
 const playerRightImage = new Image
-playerRightImage.src =   './img/test.png'
+playerRightImage.src =   './img/scootDown.png'
 
 
 
@@ -80,7 +80,7 @@ const player = new Sprite({
     },
     image: playerDownImage,
     frames: {
-        max: 4,
+        max: 2,
         hold: 10
     },
     sprites: {
@@ -154,6 +154,8 @@ function animate () {
 
     let moving = true
     player.animate = false
+
+    console.log(keys.s)
 
     if (battle.initiated) return
     //activate a battle
@@ -235,7 +237,7 @@ function animate () {
                 break
             }
         }
-
+console.log(moving)
         if (moving)
         movables.forEach(moveable => moveable.position.y += 3)
     }
@@ -263,6 +265,7 @@ function animate () {
         movables.forEach(moveable => moveable.position.x += 3)
     }
     else if (keys.s.pressed && lastKey === 's' ){
+        console.log(1)
         player.animate = true
         player.image = player.sprites.down
         for (let i=0; i < boundaries.length; i++ ){
@@ -283,7 +286,8 @@ function animate () {
              }
          }
          if (moving)
-        movables.forEach(moveable => moveable.position.y -= 3)
+            console.log('made it')
+        movables.forEach(moveable => moveable.position.y -= 1)
     }
     else if (keys.d.pressed && lastKey === 'd' ) {
         player.animate = true
